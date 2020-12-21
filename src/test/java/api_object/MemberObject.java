@@ -15,7 +15,7 @@ public class MemberObject {
 
     /**
      * 添加成员
-     * @param userId 用户ID 唯一
+     * @param us erId 用户ID 唯一
      * @param userName 用户名
      * @param mobile 手机 唯一
      * @param departmentId 所属部门ID
@@ -55,7 +55,6 @@ public class MemberObject {
         String userName = "userName" + FakeUtils.getTimeMillis();
         Random random = new Random();
         String mobile = "130000" + (int)((Math.random()*9+1)*100000);
-        System.out.println(mobile);
         addMember(userId, userName, mobile, departmentId, accessToken);
         return userId;
     }
@@ -96,6 +95,30 @@ public class MemberObject {
     }
 
     /**
+     * 修改成员
+     * @param userId 需要修改的userId
+     * @param name 修改后的名字
+     * @param accessToken token
+     * @return Response
+     */
+    public  static Response updateMember(String userId,String name,String accessToken){
+        String body = "{\n" +
+                "    \"userid\": \""+userId+"\",\n" +
+                "    \"name\": \""+name+"\"," +
+                "}";
+        return given()
+                .contentType("application/json")
+                .body(body)
+                .post("https://qyapi.weixin.qq.com/cgi-bin/user/update?access_token="+accessToken)
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response()
+                ;
+    }
+
+    /**
      * 获取部门成员列表
      * @param accessToken token
      * @param department_id 所属部门ID
@@ -106,8 +129,6 @@ public class MemberObject {
                 .queryParams("access_token", accessToken, "department_id", department_id)
                 .get("https://qyapi.weixin.qq.com/cgi-bin/user/simplelist")
                 .then()
-                .log()
-                .all()
                 .extract()
                 .response();
     }
@@ -121,6 +142,9 @@ public class MemberObject {
     public static ArrayList<String> getDepartmentUserIdList(String accessToken, String department_id){
         return getMemberList(accessToken, department_id).path("userlist.userid");
     }
+
+
+
 
     /**
      * 批量删除成员
@@ -150,8 +174,6 @@ public class MemberObject {
                 .all()
                 .extract()
                 .response();
-
-
     }
 
 

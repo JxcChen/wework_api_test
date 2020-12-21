@@ -43,7 +43,6 @@ public class DepartmentTest_09_Concurrent {
 
 
     @DisplayName("创建部门")
-    @Test
     @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
     @RepeatedTest(20)
     void crateDepartmentTest(){
@@ -62,7 +61,7 @@ public class DepartmentTest_09_Concurrent {
     @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
     @RepeatedTest(20)
     void updateDepartmentTest(){
-        String exName = Thread.currentThread().getId()+"";
+        String exName = Thread.currentThread().getId()+FakeUtils.getTimeMillis();
         departmentName = "name" + exName;
         departmentEnName = "enName" + exName;
         departmentId = DepartmentObject.createDepartment(departmentName,departmentEnName,accessToken).path("id").toString();

@@ -26,8 +26,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * 增加测试报告描述
  */
 
-@Epic("Epic企业微信接口测试用例")
-@Feature("Feature部门相关功能测试")
+@Epic("企业微信接口测试用例")
+@Feature("部门管理用例")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DepartmentTest_10_Allure {
     static String accessToken;
