@@ -2,10 +2,7 @@ package member_testcase;
 
 import api_object.MemberObject;
 import api_object.TokenHelper;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +14,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import java.util.ArrayList;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 @Epic("企业微信接口用例")
 @Feature("成员管理测试用例")
@@ -89,5 +87,16 @@ public class MemberTest {
         ArrayList<String> departmentUserIdList = MemberObject.getDepartmentUserIdList(accessToken, "2");
         // 批量删除成员
         Response response = MemberObject.batchDeleteMember(accessToken, departmentUserIdList);
+    }
+
+    @Test
+    void getDepartmentUserMsg(){
+        given()
+                .queryParams("access_token", accessToken, "department_id", 1)
+                .get("https://qyapi.weixin.qq.com/cgi-bin/user/list")
+                .then()
+                .body("userlist[0].userid",equalTo("ChenJinXuan"))
+        ;
+
     }
 }
