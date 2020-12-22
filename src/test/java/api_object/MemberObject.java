@@ -154,26 +154,30 @@ public class MemberObject {
       */
     public static Response batchDeleteMember(String accessToken,ArrayList<String> userIdList){
         // 封装需要删除的userId
-        String userIdListStr = "[";
-        for (int i = 0; i < userIdList.size(); i++) {
-            if (i == userIdList.size()-1 ){
-                userIdListStr += "\""+userIdList.get(i)+"\"]";
-                break;
+        if(userIdList.size()>0) {
+            String userIdListStr = "[";
+            for (int i = 0; i < userIdList.size(); i++) {
+                if (i == userIdList.size() - 1) {
+                    userIdListStr += "\"" + userIdList.get(i) + "\"]";
+                    break;
+                }
+                userIdListStr += "\"" + userIdList.get(i) + "\",";
             }
-            userIdListStr += "\""+userIdList.get(i)+"\",";
+
+            String body = "{\n" +
+                    "   \"useridlist\": "+userIdListStr+"\n" +
+                    "}";
+            return given()
+                    .contentType("application/json")
+                    .body(body)
+                    .post("https://qyapi.weixin.qq.com/cgi-bin/user/batchdelete?access_token="+accessToken)
+                    .then()
+                    .log()
+                    .all()
+                    .extract()
+                    .response();
         }
-        String body = "{\n" +
-                "   \"useridlist\": "+userIdListStr+"\n" +
-                "}";
-        return given()
-                .contentType("application/json")
-                .body(body)
-                .post("https://qyapi.weixin.qq.com/cgi-bin/user/batchdelete?access_token="+accessToken)
-                .then()
-                .log()
-                .all()
-                .extract()
-                .response();
+        return null;
     }
 
 
