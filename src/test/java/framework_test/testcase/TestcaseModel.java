@@ -37,7 +37,7 @@ public class TestcaseModel {
      * @return TestcaseModel
      * @throws IOException
      */
-    public TestcaseModel load(String path) throws IOException {
+    public static TestcaseModel load(String path) throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         return mapper.readValue(new File(path),TestcaseModel.class);
     }

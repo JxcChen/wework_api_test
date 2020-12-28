@@ -3,6 +3,8 @@ package framework_test.test;
 import framework_test.apiObject.ApiActionModel;
 import framework_test.global_data.GlobalVariables;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,9 +15,12 @@ import java.util.HashMap;
  * Description: ApiActionModel单元测试
  */
 public class ApiActionModelTest {
+    Logger logger = LoggerFactory.getLogger(ApiLoaderTest.class);
 
     @Test
     void test_01(){
+
+
         ApiActionModel apiActionModel = new ApiActionModel();
         apiActionModel.setGet("https://qyapi.weixin.qq.com/cgi-bin/${url}");
 
@@ -39,6 +44,7 @@ public class ApiActionModelTest {
         actParamList.add("MmNdXbFeCNiPJEztv1Kd1TqW6e3Gy6BBgPVRWDJa9fI");
 
         apiActionModel.run(actParamList);
+        logger.info("debug");
     }
 
 }

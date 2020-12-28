@@ -23,8 +23,6 @@ import java.util.HashMap;
 public class TestcaseModelTest {
 
 
-
-
     Logger logger = LoggerFactory.getLogger(ApiObjectTest.class);
     static ArrayList<String> actParamList;
     static ApiLoader apiLoader;

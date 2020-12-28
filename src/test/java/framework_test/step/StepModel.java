@@ -52,7 +52,7 @@ public class StepModel {
         // 5、根据case中的配置截取响应中的字段，并存入step变量Map中
         if (save != null) {
             save.forEach((variableName, path) -> {
-                String value = response.path(path);
+                String value = response.path(path).toString();
                 stepVariable.put(variableName, value);
             });
         }

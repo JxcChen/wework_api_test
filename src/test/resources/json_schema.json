@@ -1,0 +1,253 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "lotto": {
+        "lottoId": 5,
+        "winning-numbers": [
+          2,
+          45,
+          34,
+          23,
+          7,
+          5,
+          3
+        ],
+        "winners": [
+          {
+            "winnerId": 23,
+            "numbers": [
+              2,
+              45,
+              34,
+              23,
+              3,
+              5
+            ]
+          },
+          {
+            "winnerId": 54,
+            "numbers": [
+              52,
+              3,
+              12,
+              11,
+              18,
+              22
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "required": [
+    "lotto"
+  ],
+  "properties": {
+    "lotto": {
+      "$id": "#/properties/lotto",
+      "type": "object",
+      "title": "The lotto schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "lottoId": 5,
+          "winning-numbers": [
+            2,
+            45,
+            34,
+            23,
+            7,
+            5,
+            3
+          ],
+          "winners": [
+            {
+              "winnerId": 23,
+              "numbers": [
+                2,
+                45,
+                34,
+                23,
+                3,
+                5
+              ]
+            },
+            {
+              "winnerId": 54,
+              "numbers": [
+                52,
+                3,
+                12,
+                11,
+                18,
+                22
+              ]
+            }
+          ]
+        }
+      ],
+      "required": [
+        "lottoId",
+        "winning-numbers",
+        "winners"
+      ],
+      "properties": {
+        "lottoId": {
+          "$id": "#/properties/lotto/properties/lottoId",
+          "type": "integer",
+          "title": "The lottoId schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            5
+          ]
+        },
+        "winning-numbers": {
+          "$id": "#/properties/lotto/properties/winning-numbers",
+          "type": "array",
+          "title": "The winning-numbers schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+            [
+              2,
+              45
+            ]
+          ],
+          "additionalItems": true,
+          "items": {
+            "$id": "#/properties/lotto/properties/winning-numbers/items",
+            "anyOf": [
+              {
+                "$id": "#/properties/lotto/properties/winning-numbers/items/anyOf/0",
+                "type": "integer",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0,
+                "examples": [
+                  2,
+                  45
+                ]
+              }
+            ]
+          }
+        },
+        "winners": {
+          "$id": "#/properties/lotto/properties/winners",
+          "type": "array",
+          "title": "The winners schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+            [
+              {
+                "winnerId": 23,
+                "numbers": [
+                  2,
+                  45,
+                  34,
+                  23,
+                  3,
+                  5
+                ]
+              },
+              {
+                "winnerId": 54,
+                "numbers": [
+                  52,
+                  3,
+                  12,
+                  11,
+                  18,
+                  22
+                ]
+              }
+            ]
+          ],
+          "additionalItems": true,
+          "items": {
+            "$id": "#/properties/lotto/properties/winners/items",
+            "anyOf": [
+              {
+                "$id": "#/properties/lotto/properties/winners/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  {
+                    "winnerId": 23,
+                    "numbers": [
+                      2,
+                      45,
+                      34,
+                      23,
+                      3,
+                      5
+                    ]
+                  }
+                ],
+                "required": [
+                  "winnerId",
+                  "numbers"
+                ],
+                "properties": {
+                  "winnerId": {
+                    "$id": "#/properties/lotto/properties/winners/items/anyOf/0/properties/winnerId",
+                    "type": "integer",
+                    "title": "The winnerId schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      23
+                    ]
+                  },
+                  "numbers": {
+                    "$id": "#/properties/lotto/properties/winners/items/anyOf/0/properties/numbers",
+                    "type": "array",
+                    "title": "The numbers schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                      [
+                        2,
+                        45
+                      ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                      "$id": "#/properties/lotto/properties/winners/items/anyOf/0/properties/numbers/items",
+                      "anyOf": [
+                        {
+                          "$id": "#/properties/lotto/properties/winners/items/anyOf/0/properties/numbers/items/anyOf/0",
+                          "type": "integer",
+                          "title": "The first anyOf schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": 0,
+                          "examples": [
+                            2,
+                            45
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": true
+              }
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
