@@ -22,14 +22,24 @@ public class StepModelTest {
 
 
     Logger logger = LoggerFactory.getLogger(ApiObjectTest.class);
-    static ArrayList<String> actParamList;
+    static ArrayList<ArrayList<String>> actParamList;
     static ApiLoader apiLoader;
     @BeforeAll
     public static void beforeAll(){
-        actParamList = new ArrayList<>();
+
+
+        actParamList = new ArrayList<ArrayList<String>>();
         // 企业ID ： wwbcc92e0afe51b09e  secret ： MmNdXbFeCNiPJEztv1Kd1TqW6e3Gy6BBgPVRWDJa9fI  agentId ： 3010084
-        actParamList.add("wwbcc92e0afe51b09e");
-        actParamList.add("MmNdXbFeCNiPJEztv1Kd1TqW6e3Gy6BBgPVRWDJa9fI");
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("wwbcc92e0afe51b09e");
+        arrayList.add("MmNdXbFeCNiPJEztv1Kd1TqW6e3Gy6BBgPVRWDJa9fI");
+        actParamList.add(arrayList);
+
+
+//        actParamList = new ArrayList<ArrayList<String>>();
+//        // 企业ID ： wwbcc92e0afe51b09e  secret ： MmNdXbFeCNiPJEztv1Kd1TqW6e3Gy6BBgPVRWDJa9fI  agentId ： 3010084
+//        actParamList.add("wwbcc92e0afe51b09e");
+//        actParamList.add("MmNdXbFeCNiPJEztv1Kd1TqW6e3Gy6BBgPVRWDJa9fI");
         apiLoader.load("src/test/resources/api");
     }
 
@@ -56,8 +66,9 @@ public class StepModelTest {
         assertModel.setReason("getToken错误码校验01");
         ArrayList<AssertModel> assertModelArrayList = new ArrayList<>();
         assertModelArrayList.add(assertModel);
-
-        model.setAsserts(assertModelArrayList);
+        HashMap<String,ArrayList<AssertModel>> assertMap = new HashMap<>();
+        assertMap.put("assert1",assertModelArrayList);
+        model.setAsserts(assertMap);
         HashMap<String,String> stepVariable = new HashMap<>();
         model.run(stepVariable);
 

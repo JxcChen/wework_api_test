@@ -26,7 +26,7 @@ public class ApiTest {
 
     @ParameterizedTest
     @MethodSource
-    void apiTest(TestcaseModel testcaseModel,String apiName,String description){
+    void  apiTest(TestcaseModel testcaseModel,String apiName,String description){
         logger.info("测试："+apiName+"接口");
         logger.info(description);
         testcaseModel.run();

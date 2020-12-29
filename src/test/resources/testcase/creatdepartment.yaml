@@ -4,22 +4,48 @@ description: 初步测试创建部门用例
 steps:
   - api: tokenhelper
     action: getToken
-    actualParameter: ["ww5ef451bf006ec894","EcEIog2OJ8AtO7PDaqt_yqHKqmYXqwSZKDhyfU1aSiU"]
+    actualParameter:
+    - ["ww5ef451bf006ec894","EcEIog2OJ8AtO7PDaqt_yqHKqmYXqwSZKDhyfU1aSiU"]
     saveGlobal:
       accesstoken: access_token
     asserts:
-      - actual: errcode
-        matcher: equalTo
-        expect: 0
-        reason: 'getToken错误码校验！'
+      asserts1:
+        - actual: errcode
+          matcher: equalTo
+          expect: 1
+          reason: '创建部门校验错误码！'
+
   - api: department
     action: createDepartment
-    actualParameter: ["部门${getTimeStamp}","Department${getTimeStamp}"]
+    actualParameter:
+    - ["部门${getTimeStamp}","Department${getTimeStamp}1"]
+    - ["部门${getTimeStamp}2","Department${getTimeStamp}2"]
+    - ["部门${getTimeStamp}3","Department${getTimeStamp}3"]
+    - ["部门${getTimeStamp}4","Department${getTimeStamp}4"]
     save:
       departmentId: id
-    asserts:
-      - actual: errcode
-        matcher: equalTo
-        expect: 0
-        reason: '创建部门校验错误码！'
 
+    asserts:
+      assert0:
+        - actual: errcode
+          matcher: equalTo
+          expect: 1
+          reason: 'getToken错误码校验1！'
+
+      assert1:
+        - actual: errcode
+          matcher: equalTo
+          expect: 2
+          reason: 'getToken错误码校验2！'
+
+      assert2:
+        - actual: errcode
+          matcher: equalTo
+          expect: 3
+          reason: 'getToken错误码校验3！'
+
+      assert3:
+        - actual: errcode
+          matcher: equalTo
+          expect: 4
+          reason: 'getToken错误码校验4！'

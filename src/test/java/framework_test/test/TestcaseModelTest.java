@@ -39,7 +39,7 @@ public class TestcaseModelTest {
     void test_01() throws IOException {
 
         TestcaseModel testcaseModel = new TestcaseModel();
-        TestcaseModel model = testcaseModel.load("src\\test\\resources\\testcase\\gettoken.yaml");
+        TestcaseModel model = testcaseModel.load("src/test/resources/testcase/creatdepartment.yaml");
         model.run();
 
         logger.info("test debug");
